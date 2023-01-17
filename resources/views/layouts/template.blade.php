@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="m-5">
-<h4>Bem vindo(a)</h4>
+<h4>Escolher Título</h4>
 </div>
-        
+    
 @endsection

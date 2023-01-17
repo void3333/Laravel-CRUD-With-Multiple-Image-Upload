@@ -1,0 +1,30 @@
+* {
+    font-family: 'Roboto';
+}
+
+.form-control {
+    color: rgb(20, 20, 20);
+}
+
+.form-control:focus {
+    color: rgb(20, 20, 20);
+}
+
+.navbar {
+    border-bottom:1px solid #f8b250;
+}
+
+#logo {
+    width: 25px;
+    height: 25px;
+}
+
+.msg {
+    background-color: #f8b250;
+    color: white;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 10px;
+
+}

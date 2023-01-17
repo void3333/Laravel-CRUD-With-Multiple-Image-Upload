@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
-use App\Models\Post;
+use App\Models\Inspector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -14,11 +14,22 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function welcome()
     {
-        $posts=Post::all();
-        return view('index')->with('posts',$posts);
+        return view('welcome');
     }
+
+    
+        /**
+         * Display inspector view.
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function inspector()
+        {
+            $posts=Inspector::all();
+            return view('inspector')->with('posts',$posts);
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +54,7 @@ class PostController extends Controller
             $imageName=time().'_'.$file->getClientOriginalName();
             $file->move(\public_path("cover/"),$imageName);
 
-            $post =new Post([
+            $post=new Inspector([
                 "title" =>$request->title,
                 "author" =>$request->author,
                 "body" =>$request->body,
@@ -62,19 +73,22 @@ class PostController extends Controller
                     Image::create($request->all());
 
                 }
+                
             }
 
-            return redirect("/");
+            return redirect("/welcome");
+
+    
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Inspector  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Inspector $post)
     {
         //
     }
@@ -82,12 +96,12 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Inspector  $post
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-       $posts=Post::findOrFail($id);
+       $posts=Inspector::findOrFail($id);
         return view('edit')->with('posts',$posts);
     }
 
@@ -95,12 +109,12 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Inspector  $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
-     $post=Post::findOrFail($id);
+     $post=Inspector::findOrFail($id);
      if($request->hasFile("cover")){
          if (File::exists("cover/".$post->cover)) {
              File::delete("cover/".$post->cover);
@@ -137,12 +151,12 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Inspector  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-         $posts=Post::findOrFail($id);
+         $posts=Inspector::findOrFail($id);
 
          if (File::exists("cover/".$posts->cover)) {
              File::delete("cover/".$posts->cover);
@@ -170,7 +184,7 @@ class PostController extends Controller
    }
 
    public function deletecover($id){
-    $cover=Post::findOrFail($id)->cover;
+    $cover=Inspector::findOrFail($id)->cover;
     if (File::exists("cover/".$cover)) {
        File::delete("cover/".$cover);
    }

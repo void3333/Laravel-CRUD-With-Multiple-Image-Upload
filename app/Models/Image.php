@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Post;
+use App\Models\Inspector;
 class Image extends Model
 {
     use HasFactory;
@@ -14,6 +14,6 @@ class Image extends Model
     ];
 
     public function posts(){
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Inspector::class);
     }
 }

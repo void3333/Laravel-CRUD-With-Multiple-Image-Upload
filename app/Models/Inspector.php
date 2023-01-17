@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
-class Post extends Model
+class Inspector extends Model
 {
     use HasFactory;
     protected $fillable=[
